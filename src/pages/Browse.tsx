@@ -182,12 +182,15 @@ const Browse = () => {
           </div>
           
           <div className="flex gap-2">
-            <FilterPanel
-              filters={filters}
-              onFiltersChange={setFilters}
-              onReset={resetFilters}
-            />
-            
+            {/* Mobile only: filter trigger opens sheet. Desktop uses sidebar below. */}
+            <div className="lg:hidden">
+              <FilterPanel
+                filters={filters}
+                onFiltersChange={setFilters}
+                onReset={resetFilters}
+              />
+            </div>
+
             <Select value={sortBy} onValueChange={setSortBy}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Sort by" />

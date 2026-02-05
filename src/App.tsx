@@ -18,6 +18,9 @@ import Watchlist from "./pages/dashboard/Watchlist";
 import UserSettings from "./pages/dashboard/Settings";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import PendingReviews from "./pages/admin/PendingReviews";
+import AllListings from "./pages/admin/AllListings";
+import Users from "./pages/admin/Users";
+import ReviewListing from "./pages/admin/ReviewListing";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -49,6 +52,9 @@ const App = () => (
             {/* Admin Dashboard */}
             <Route path="/admin" element={<AdminDashboard />}>
               <Route path="pending" element={<PendingReviews />} />
+              <Route path="listings" element={<AllListings />} />
+              <Route path="users" element={<Users />} />
+              <Route path="review/:id" element={<ReviewListing />} />
             </Route>
             
             <Route path="*" element={<NotFound />} />
