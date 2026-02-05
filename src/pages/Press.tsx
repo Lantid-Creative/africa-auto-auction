@@ -111,3 +111,5 @@ const Press = () => {
     </Layout>
   );
 };
+
+export default Press;
