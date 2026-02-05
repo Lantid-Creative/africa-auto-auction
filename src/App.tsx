@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
+import { LanguageProvider } from "@/hooks/useLanguage";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Browse from "./pages/Browse";
@@ -11,6 +12,11 @@ import AuctionDetail from "./pages/AuctionDetail";
 import Sell from "./pages/Sell";
 import About from "./pages/About";
 import HowItWorks from "./pages/HowItWorks";
+import Membership from "./pages/Membership";
+import BuyerGuide from "./pages/BuyerGuide";
+import Help from "./pages/Help";
+import Contact from "./pages/Contact";
+import PlaceholderPage from "./pages/PlaceholderPage";
 import Dashboard from "./pages/Dashboard";
 import MyListings from "./pages/dashboard/MyListings";
 import MyBids from "./pages/dashboard/MyBids";
@@ -32,6 +38,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <LanguageProvider>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
@@ -40,6 +47,19 @@ const App = () => (
             <Route path="/sell" element={<Sell />} />
             <Route path="/about" element={<About />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
+            <Route path="/membership" element={<Membership />} />
+            <Route path="/buyer-guide" element={<BuyerGuide />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/terms" element={<PlaceholderPage title="Terms of Service" description="Our terms and conditions." />} />
+            <Route path="/privacy" element={<PlaceholderPage title="Privacy Policy" description="How we handle your data." />} />
+            <Route path="/careers" element={<PlaceholderPage title="Careers" description="Join the AfriAuto team." />} />
+            <Route path="/press" element={<PlaceholderPage title="Press" description="Media and press kit." />} />
+            <Route path="/financing" element={<PlaceholderPage title="Financing" description="Payment and financing options." />} />
+            <Route path="/shipping" element={<PlaceholderPage title="Shipping & Delivery" description="Domestic and international delivery." />} />
+            <Route path="/seller-guide" element={<PlaceholderPage title="Seller Guide" description="How to sell your vehicle." />} />
+            <Route path="/pricing" element={<PlaceholderPage title="Pricing" description="Fees and membership pricing." />} />
+            <Route path="/success-stories" element={<PlaceholderPage title="Success Stories" description="Stories from our community." />} />
             
             {/* User Dashboard */}
             <Route path="/dashboard" element={<Dashboard />}>
@@ -59,6 +79,7 @@ const App = () => (
             
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </LanguageProvider>
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>

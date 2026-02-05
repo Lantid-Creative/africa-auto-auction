@@ -1,35 +1,67 @@
 import { Link } from 'react-router-dom';
-import { Gavel, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import {
+  Gavel,
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Smartphone,
+} from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
-  const footerLinks = {
-    company: [
-      { name: 'About Us', href: '/about' },
-      { name: 'How It Works', href: '/how-it-works' },
-      { name: 'Careers', href: '/careers' },
-      { name: 'Press', href: '/press' },
-    ],
-    buyers: [
-      { name: 'Browse Auctions', href: '/auctions' },
-      { name: 'Buyer Guide', href: '/buyer-guide' },
-      { name: 'Financing', href: '/financing' },
-      { name: 'Shipping', href: '/shipping' },
-    ],
-    sellers: [
-      { name: 'Sell Your Car', href: '/sell' },
-      { name: 'Seller Guide', href: '/seller-guide' },
-      { name: 'Pricing', href: '/pricing' },
-      { name: 'Success Stories', href: '/success-stories' },
-    ],
-    support: [
-      { name: 'Help Center', href: '/help' },
-      { name: 'Contact Us', href: '/contact' },
-      { name: 'Terms of Service', href: '/terms' },
-      { name: 'Privacy Policy', href: '/privacy' },
-    ],
-  };
+  const footerSections = [
+    {
+      titleKey: 'footer.company',
+      links: [
+        { nameKey: 'footer.aboutUs', href: '/about' },
+        { nameKey: 'footer.howItWorks', href: '/how-it-works' },
+        { nameKey: 'footer.careers', href: '/careers' },
+        { nameKey: 'footer.press', href: '/press' },
+      ],
+    },
+    {
+      titleKey: 'footer.forBuyers',
+      links: [
+        { nameKey: 'footer.browseAuctions', href: '/auctions' },
+        { nameKey: 'footer.buyerGuide', href: '/buyer-guide' },
+        { nameKey: 'footer.financing', href: '/financing' },
+        { nameKey: 'footer.shipping', href: '/shipping' },
+      ],
+    },
+    {
+      titleKey: 'footer.forSellers',
+      links: [
+        { nameKey: 'footer.sellYourCar', href: '/sell' },
+        { nameKey: 'footer.sellerGuide', href: '/seller-guide' },
+        { nameKey: 'footer.pricing', href: '/pricing' },
+        { nameKey: 'footer.successStories', href: '/success-stories' },
+      ],
+    },
+    {
+      titleKey: 'footer.support',
+      links: [
+        { nameKey: 'footer.helpCenter', href: '/help' },
+        { nameKey: 'footer.contactUs', href: '/contact' },
+        { nameKey: 'footer.termsOfService', href: '/terms' },
+        { nameKey: 'footer.privacyPolicy', href: '/privacy' },
+      ],
+    },
+  ];
+
+  const usefulLinks = [
+    { nameKey: 'footer.vehicleFinder', href: '/auctions' },
+    { nameKey: 'footer.auctionCalendar', href: '/auctions' },
+    { nameKey: 'footer.paymentPickup', href: '/how-it-works' },
+    { nameKey: 'footer.domesticDelivery', href: '/shipping' },
+    { nameKey: 'footer.internationalDelivery', href: '/shipping' },
+  ];
 
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
@@ -39,7 +71,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-card border-t border-border/50">
+    <footer className="bg-card border-t border-border/50" id="footer-container">
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12">
@@ -51,16 +83,17 @@ const Footer = () => {
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-display font-bold text-gold-gradient">
-                  AfriAuto
+                  {t('common.appName')}
                 </span>
                 <span className="text-[10px] uppercase tracking-wider text-muted-foreground -mt-1">
-                  Premium Auctions
+                  {t('common.tagline')}
                 </span>
               </div>
             </Link>
             <p className="text-muted-foreground text-sm mb-6 max-w-xs">
-              Africa's premier car auction platform. Buy and sell premium vehicles with confidence 
-              through our transparent, secure auction process.
+              Africa's premier car auction platform. Buy and sell premium
+              vehicles with confidence through our transparent, secure auction
+              process.
             </p>
             <div className="space-y-3 text-sm text-muted-foreground">
               <div className="flex items-center gap-3">
@@ -76,72 +109,82 @@ const Footer = () => {
                 <span>Lagos, Nigeria</span>
               </div>
             </div>
+
+            {/* Download the App */}
+            <div className="mt-8 p-4 rounded-xl bg-muted/30 border border-border/50">
+              <div className="flex items-center gap-2 mb-2">
+                <Smartphone className="w-5 h-5 text-primary" />
+                <span className="font-display font-semibold">
+                  {t('footer.downloadApp')}
+                </span>
+              </div>
+              <p className="text-xs text-muted-foreground mb-3">
+                {t('footer.downloadAppDesc')}
+              </p>
+              <div className="flex gap-2">
+                <a
+                  href="#"
+                  className="text-xs px-3 py-2 rounded-lg bg-foreground text-background hover:opacity-90"
+                >
+                  App Store
+                </a>
+                <a
+                  href="#"
+                  className="text-xs px-3 py-2 rounded-lg bg-foreground text-background hover:opacity-90"
+                >
+                  Google Play
+                </a>
+              </div>
+            </div>
           </div>
 
-          {/* Links Columns */}
-          <div>
-            <h4 className="font-display font-semibold text-foreground mb-4">Company</h4>
-            <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    to={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Link Columns */}
+          {footerSections.map((section) => (
+            <div key={section.titleKey}>
+              <h4 className="font-display font-semibold text-foreground mb-4">
+                {t(section.titleKey)}
+              </h4>
+              <ul className="space-y-3">
+                {section.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      to={link.href}
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {t(link.nameKey)}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
 
-          <div>
-            <h4 className="font-display font-semibold text-foreground mb-4">For Buyers</h4>
-            <ul className="space-y-3">
-              {footerLinks.buyers.map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    to={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        {/* Useful Links - Copart style */}
+        <div className="mt-12 pt-8 border-t border-border/50">
+          <h4 className="font-display font-semibold text-foreground mb-4">
+            {t('footer.usefulLinks')}
+          </h4>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {usefulLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                {t(link.nameKey)}
+              </Link>
+            ))}
           </div>
+        </div>
 
-          <div>
-            <h4 className="font-display font-semibold text-foreground mb-4">For Sellers</h4>
-            <ul className="space-y-3">
-              {footerLinks.sellers.map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    to={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display font-semibold text-foreground mb-4">Support</h4>
-            <ul className="space-y-3">
-              {footerLinks.support.map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    to={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Disclaimers */}
+        <div className="mt-8 p-4 rounded-lg bg-muted/20 border border-border/50">
+          <p className="text-xs text-muted-foreground">
+            <strong className="text-foreground/80">Disclaimer:</strong>{' '}
+            {t('disclaimer.bidBinding')} {t('disclaimer.noDriveOff')}{' '}
+            {t('disclaimer.feesVary')}
+          </p>
         </div>
       </div>
 
@@ -150,7 +193,8 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-sm text-muted-foreground">
-              © {currentYear} AfriAuto. All rights reserved. Founded by{' '}
+              © {currentYear} {t('common.appName')}. {t('footer.copyright')}{' '}
+              {t('footer.foundedBy')}{' '}
               <span className="text-primary font-medium">Damilola Yinusa</span>
             </div>
             <div className="flex items-center gap-4">

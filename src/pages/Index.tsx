@@ -3,6 +3,7 @@ import Layout from '@/components/layout/Layout';
 import AuctionCard from '@/components/auction/AuctionCard';
 import CountdownTimer from '@/components/auction/CountdownTimer';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/hooks/useLanguage';
 import { Auction, CarListing } from '@/types';
 import heroImage from '@/assets/hero-bg.jpg';
 import { 
@@ -164,6 +165,8 @@ const howItWorks = [
 ];
 
 const Index = () => {
+  const { t } = useLanguage();
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -183,30 +186,29 @@ const Index = () => {
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Africa's Premier Car Auction Platform
+              {t('hero.badge')}
             </span>
             
             <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight">
-              Buy & Sell
-              <span className="text-gold-gradient"> Premium </span>
-              Vehicles
+              {t('hero.title')}
+              <span className="text-gold-gradient"> {t('hero.titleHighlight')} </span>
+              {t('hero.titleSuffix')}
             </h1>
             
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Discover exceptional automobiles from across Africa. Our transparent auction 
-              process ensures you get the best deals on luxury, classic, and everyday vehicles.
+              {t('hero.subtitle')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/auctions">
                 <Button className="btn-premium text-lg px-8 py-6 gap-2">
-                  Browse Auctions
+                  {t('hero.browseAuctions')}
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>
               <Link to="/sell">
                 <Button variant="outline" className="text-lg px-8 py-6 border-primary/30 hover:bg-primary/10">
-                  Sell Your Car
+                  {t('hero.sellYourCar')}
                 </Button>
               </Link>
             </div>
@@ -215,15 +217,15 @@ const Index = () => {
             <div className="flex items-center gap-6 mt-12 pt-8 border-t border-border/30">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Shield className="w-5 h-5 text-primary" />
-                <span>Secure Payments</span>
+                <span>{t('hero.securePayments')}</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <CheckCircle2 className="w-5 h-5 text-primary" />
-                <span>Verified Sellers</span>
+                <span>{t('hero.verifiedSellers')}</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Globe className="w-5 h-5 text-primary" />
-                <span>Pan-African</span>
+                <span>{t('hero.panAfrican')}</span>
               </div>
             </div>
           </div>

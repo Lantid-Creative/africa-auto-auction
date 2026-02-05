@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
+import { useLanguage } from '@/hooks/useLanguage';
+import { localeNames, type LocaleCode } from '@/locales';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,22 +11,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { 
-  Menu, 
-  X, 
-  User, 
-  Car, 
-  Gavel, 
-  LogOut, 
+import {
+  Menu,
+  X,
+  User,
+  Car,
+  Gavel,
+  LogOut,
   LayoutDashboard,
   ChevronDown,
-  Search
+  Search,
+  Globe,
 } from 'lucide-react';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, logout, isAuthenticated } = useAuth();
+  const { t, locale, setLocale } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -37,10 +41,11 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Browse Auctions', href: '/auctions' },
-    { name: 'How It Works', href: '/how-it-works' },
-    { name: 'Sell Your Car', href: '/sell' },
-    { name: 'About', href: '/about' },
+    { nameKey: 'nav.browseAuctions', href: '/auctions' },
+    { nameKey: 'nav.howItWorks', href: '/how-it-works' },
+    { nameKey: 'nav.sellYourCar', href: '/sell' },
+    { nameKey: 'nav.membership', href: '/membership' },
+    { nameKey: 'nav.about', href: '/about' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -62,10 +67,10 @@ const Header = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-display font-bold text-gold-gradient">
-                AfriAuto
+                {t('common.appName')}
               </span>
               <span className="text-[10px] uppercase tracking-wider text-muted-foreground -mt-1">
-                Premium Auctions
+                {t('common.tagline')}
               </span>
             </div>
           </Link>
@@ -74,7 +79,7 @@ const Header = () => {
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.href}
                 to={link.href}
                 className={`text-sm font-medium transition-colors duration-200 ${
                   isActive(link.href)
@@ -82,21 +87,42 @@ const Header = () => {
                     : 'text-foreground/70 hover:text-foreground'
                 }`}
               >
-                {link.name}
+                {t(link.nameKey)}
               </Link>
             ))}
           </nav>
 
           {/* Right Side Actions */}
           <div className="hidden lg:flex items-center gap-4">
-            <Button 
-              variant="ghost" 
-              size="icon" 
+            <Button
+              variant="ghost"
+              size="icon"
               className="text-foreground/70 hover:text-foreground"
               onClick={() => navigate('/auctions')}
+              aria-label={t('common.search')}
             >
               <Search className="w-5 h-5" />
             </Button>
+
+            {/* Language switcher */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-foreground/70 hover:text-foreground">
+                  <Globe className="w-5 h-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {(Object.keys(localeNames) as LocaleCode[]).map((code) => (
+                  <DropdownMenuItem
+                    key={code}
+                    onClick={() => setLocale(code)}
+                    className={locale === code ? 'bg-primary/10 text-primary' : ''}
+                  >
+                    {localeNames[code]}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {isAuthenticated ? (
               <DropdownMenu>
@@ -116,35 +142,35 @@ const Header = () => {
                 <DropdownMenuContent align="end" className="w-56">
                   <DropdownMenuItem onClick={() => navigate('/dashboard')}>
                     <LayoutDashboard className="w-4 h-4 mr-2" />
-                    Dashboard
+                    {t('nav.dashboard')}
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => navigate('/dashboard/my-listings')}>
                     <Car className="w-4 h-4 mr-2" />
-                    My Listings
+                    {t('nav.myListings')}
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => navigate('/dashboard/my-bids')}>
                     <Gavel className="w-4 h-4 mr-2" />
-                    My Bids
+                    {t('nav.myBids')}
                   </DropdownMenuItem>
                   {user?.role === 'admin' && (
                     <>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem onClick={() => navigate('/admin')}>
                         <LayoutDashboard className="w-4 h-4 mr-2" />
-                        Admin Dashboard
+                        {t('nav.adminDashboard')}
                       </DropdownMenuItem>
                     </>
                   )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={logout} className="text-destructive">
                     <LogOut className="w-4 h-4 mr-2" />
-                    Sign Out
+                    {t('nav.signOut')}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
               <Button onClick={() => navigate('/auth')} className="btn-premium">
-                Sign In
+                {t('nav.signIn')}
               </Button>
             )}
           </div>
@@ -170,7 +196,7 @@ const Header = () => {
             <nav className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link
-                  key={link.name}
+                  key={link.href}
                   to={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
@@ -179,7 +205,7 @@ const Header = () => {
                       : 'text-foreground/70 hover:bg-muted'
                   }`}
                 >
-                  {link.name}
+                  {t(link.nameKey)}
                 </Link>
               ))}
               <div className="pt-4 mt-2 border-t border-border/50">
@@ -191,7 +217,7 @@ const Header = () => {
                       className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium hover:bg-muted"
                     >
                       <LayoutDashboard className="w-4 h-4" />
-                      Dashboard
+                      {t('nav.dashboard')}
                     </Link>
                     {user?.role === 'admin' && (
                       <Link
@@ -200,7 +226,7 @@ const Header = () => {
                         className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium hover:bg-muted"
                       >
                         <LayoutDashboard className="w-4 h-4" />
-                        Admin Dashboard
+                        {t('nav.adminDashboard')}
                       </Link>
                     )}
                     <button
@@ -208,15 +234,15 @@ const Header = () => {
                       className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-destructive hover:bg-destructive/10 w-full text-left"
                     >
                       <LogOut className="w-4 h-4" />
-                      Sign Out
+                      {t('nav.signOut')}
                     </button>
                   </>
                 ) : (
-                  <Button 
+                  <Button
                     onClick={() => { navigate('/auth'); setIsMobileMenuOpen(false); }}
                     className="w-full btn-premium"
                   >
-                    Sign In
+                    {t('nav.signIn')}
                   </Button>
                 )}
               </div>
