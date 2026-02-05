@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
-import { Gavel, Users, Globe, Shield, Target, Heart } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Gavel, Users, Globe, Shield, Target, Heart, ArrowRight } from 'lucide-react';
 
 const About = () => {
   const values = [
@@ -22,14 +24,6 @@ const About = () => {
       icon: Target,
       title: 'Innovation',
       description: 'Leveraging cutting-edge technology to provide the best online auction experience in Africa.',
-    },
-  ];
-
-  const team = [
-    {
-      name: 'Damilola Yinusa',
-      role: 'Founder & CEO',
-      bio: 'Visionary entrepreneur passionate about transforming the African automotive market through technology.',
     },
   ];
 
@@ -137,31 +131,33 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Why Choose AfriAuto */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl font-display font-bold mb-4">
-              Meet Our <span className="text-gold-gradient">Founder</span>
+              Why <span className="text-gold-gradient">Thousands</span> Choose AfriAuto
             </h2>
             <p className="text-muted-foreground text-lg">
-              The visionary behind AfriAuto
+              We combine transparency, technology, and trust to deliver Africa's best car auction experience.
             </p>
           </div>
-
-          <div className="max-w-md mx-auto">
-            {team.map((member, index) => (
-              <div key={index} className="card-premium p-8 text-center">
-                <div className="w-24 h-24 rounded-full bg-gradient-gold flex items-center justify-center mx-auto mb-6">
-                  <span className="text-4xl font-display font-bold text-primary-foreground">
-                    {member.name.split(' ').map(n => n[0]).join('')}
-                  </span>
-                </div>
-                <h3 className="font-display font-semibold text-xl mb-1">{member.name}</h3>
-                <p className="text-primary text-sm mb-4">{member.role}</p>
-                <p className="text-muted-foreground">{member.bio}</p>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="card-premium p-6 text-center">
+              <p className="text-3xl font-display font-bold text-gold-gradient mb-2">100%</p>
+              <p className="font-semibold mb-1">Transparent Bidding</p>
+              <p className="text-sm text-muted-foreground">Every bid is visible. No hidden reserves—you see exactly where you stand.</p>
+            </div>
+            <div className="card-premium p-6 text-center">
+              <p className="text-3xl font-display font-bold text-gold-gradient mb-2">Verified</p>
+              <p className="font-semibold mb-1">Sellers & Vehicles</p>
+              <p className="text-sm text-muted-foreground">Listings are reviewed before they go live. Buy with confidence.</p>
+            </div>
+            <div className="card-premium p-6 text-center">
+              <p className="text-3xl font-display font-bold text-gold-gradient mb-2">Secure</p>
+              <p className="font-semibold mb-1">Payments & Escrow</p>
+              <p className="text-sm text-muted-foreground">Your money is protected until the vehicle is delivered as described.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -169,17 +165,31 @@ const About = () => {
       {/* CTA Section */}
       <section className="py-20 bg-card/30">
         <div className="container mx-auto px-4">
-          <div className="card-premium p-12 text-center relative overflow-hidden">
+          <div className="card-premium p-12 md:p-16 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
             <div className="relative z-10">
               <Heart className="w-12 h-12 text-primary mx-auto mb-6" />
-              <h2 className="text-3xl font-display font-bold mb-4">
-                Join the AfriAuto Community
+              <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+                Ready to Buy or Sell Your Next Car?
               </h2>
-              <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
-                Be part of Africa's automotive revolution. Whether you're buying or selling, 
-                we're here to make your journey exceptional.
+              <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
+                Join 50,000+ members who trust AfriAuto for fair prices, verified listings, and secure transactions. 
+                Create your free account in under a minute and start browsing live auctions—or list your vehicle 
+                and let competitive bidding work for you.
               </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link to="/auctions" className="inline-flex">
+                  <Button className="btn-premium text-lg px-8 py-6 gap-2">
+                    Browse Auctions
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
+                </Link>
+                <Link to="/sell" className="inline-flex">
+                  <Button variant="outline" className="text-lg px-8 py-6 border-primary/30 hover:bg-primary/10">
+                    Sell Your Car
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

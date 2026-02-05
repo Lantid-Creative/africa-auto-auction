@@ -16,7 +16,15 @@ import Membership from "./pages/Membership";
 import BuyerGuide from "./pages/BuyerGuide";
 import Help from "./pages/Help";
 import Contact from "./pages/Contact";
-import PlaceholderPage from "./pages/PlaceholderPage";
+import Careers from "./pages/Careers";
+import Press from "./pages/Press";
+import Financing from "./pages/Financing";
+import Shipping from "./pages/Shipping";
+import SellerGuide from "./pages/SellerGuide";
+import Pricing from "./pages/Pricing";
+import SuccessStories from "./pages/SuccessStories";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 import Dashboard from "./pages/Dashboard";
 import MyListings from "./pages/dashboard/MyListings";
 import MyBids from "./pages/dashboard/MyBids";
@@ -51,15 +59,15 @@ const App = () => (
             <Route path="/buyer-guide" element={<BuyerGuide />} />
             <Route path="/help" element={<Help />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/terms" element={<PlaceholderPage title="Terms of Service" description="Our terms and conditions." />} />
-            <Route path="/privacy" element={<PlaceholderPage title="Privacy Policy" description="How we handle your data." />} />
-            <Route path="/careers" element={<PlaceholderPage title="Careers" description="Join the AfriAuto team." />} />
-            <Route path="/press" element={<PlaceholderPage title="Press" description="Media and press kit." />} />
-            <Route path="/financing" element={<PlaceholderPage title="Financing" description="Payment and financing options." />} />
-            <Route path="/shipping" element={<PlaceholderPage title="Shipping & Delivery" description="Domestic and international delivery." />} />
-            <Route path="/seller-guide" element={<PlaceholderPage title="Seller Guide" description="How to sell your vehicle." />} />
-            <Route path="/pricing" element={<PlaceholderPage title="Pricing" description="Fees and membership pricing." />} />
-            <Route path="/success-stories" element={<PlaceholderPage title="Success Stories" description="Stories from our community." />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/press" element={<Press />} />
+            <Route path="/financing" element={<Financing />} />
+            <Route path="/shipping" element={<Shipping />} />
+            <Route path="/seller-guide" element={<SellerGuide />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/success-stories" element={<SuccessStories />} />
             
             {/* User Dashboard */}
             <Route path="/dashboard" element={<Dashboard />}>

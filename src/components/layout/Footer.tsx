@@ -193,9 +193,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-sm text-muted-foreground">
-              © {currentYear} {t('common.appName')}. {t('footer.copyright')}{' '}
-              {t('footer.foundedBy')}{' '}
-              <span className="text-primary font-medium">Damilola Yinusa</span>
+              © {currentYear} {t('common.appName')}. {t('footer.copyright')}
             </div>
             <div className="flex items-center gap-4">
               {socialLinks.map((social) => (
