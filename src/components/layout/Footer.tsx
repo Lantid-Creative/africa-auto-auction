@@ -146,7 +146,7 @@ const Footer = () => {
               </h4>
               <ul className="space-y-3">
                 {section.links.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.nameKey}>
                     <Link
                       to={link.href}
                       className="text-sm text-muted-foreground hover:text-primary transition-colors"
@@ -168,7 +168,7 @@ const Footer = () => {
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {usefulLinks.map((link) => (
               <Link
-                key={link.href}
+                key={link.nameKey}
                 to={link.href}
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
