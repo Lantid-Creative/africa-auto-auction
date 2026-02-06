@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import { useLanguage } from '@/hooks/useLanguage';
 import { localeNames, type LocaleCode } from '@/locales';
+import ThemeSwitcher from './ThemeSwitcher';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -93,7 +94,7 @@ const Header = () => {
           </nav>
 
           {/* Right Side Actions */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
@@ -123,6 +124,9 @@ const Header = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+
+            {/* Theme switcher */}
+            <ThemeSwitcher />
 
             {isAuthenticated ? (
               <DropdownMenu>
@@ -208,6 +212,31 @@ const Header = () => {
                   {t(link.nameKey)}
                 </Link>
               ))}
+              
+              {/* Mobile Language & Theme Switchers */}
+              <div className="flex items-center gap-2 px-4 py-3">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm" className="flex-1 gap-2">
+                      <Globe className="w-4 h-4" />
+                      {localeNames[locale]}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    {(Object.keys(localeNames) as LocaleCode[]).map((code) => (
+                      <DropdownMenuItem
+                        key={code}
+                        onClick={() => setLocale(code)}
+                        className={locale === code ? 'bg-primary/10 text-primary' : ''}
+                      >
+                        {localeNames[code]}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <ThemeSwitcher />
+              </div>
+
               <div className="pt-4 mt-2 border-t border-border/50">
                 {isAuthenticated ? (
                   <>
