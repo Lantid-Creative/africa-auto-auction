@@ -1,10 +1,10 @@
-import { en } from './en';
+import { en, type LocaleKey } from './en';
 import { fr } from './fr';
 import { sw } from './sw';
 
 export type LocaleCode = 'en' | 'fr' | 'sw';
 
-export const locales: Record<LocaleCode, typeof en> = {
+export const locales: Record<LocaleCode, LocaleKey> = {
   en,
   fr,
   sw,

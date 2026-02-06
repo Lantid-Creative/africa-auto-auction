@@ -129,4 +129,14 @@ export const en = {
   },
 } as const;
 
-export type LocaleKey = typeof en;
+// Use a flexible type that allows translations with different text values
+export type LocaleKey = {
+  common: Record<string, string>;
+  nav: Record<string, string>;
+  hero: Record<string, string>;
+  auth: Record<string, string>;
+  membership: Record<string, string>;
+  buyerGuide: Record<string, string>;
+  footer: Record<string, string>;
+  disclaimer: Record<string, string>;
+};
