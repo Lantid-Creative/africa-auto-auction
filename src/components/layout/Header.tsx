@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/hooks/useAuth';
 import { useLanguage } from '@/hooks/useLanguage';
 import { localeNames, type LocaleCode } from '@/locales';
@@ -23,6 +24,10 @@ import {
   ChevronDown,
   Search,
   Globe,
+  Shield,
+  Bell,
+  Heart,
+  Settings,
 } from 'lucide-react';
 
 const Header = () => {
@@ -143,7 +148,14 @@ const Header = () => {
                     <ChevronDown className="w-4 h-4" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuContent align="end" className="w-60">
+                  <div className="px-3 py-2 border-b border-border/50">
+                    <p className="font-semibold text-sm">{user?.name}</p>
+                    <p className="text-xs text-muted-foreground">{user?.email}</p>
+                    <div className="flex items-center gap-1 mt-1 text-xs text-success">
+                      <Shield className="w-3 h-3" /> KYC Verified
+                    </div>
+                  </div>
                   <DropdownMenuItem onClick={() => navigate('/dashboard')}>
                     <LayoutDashboard className="w-4 h-4 mr-2" />
                     {t('nav.dashboard')}
@@ -155,6 +167,18 @@ const Header = () => {
                   <DropdownMenuItem onClick={() => navigate('/dashboard/my-bids')}>
                     <Gavel className="w-4 h-4 mr-2" />
                     {t('nav.myBids')}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate('/dashboard/watchlist')}>
+                    <Heart className="w-4 h-4 mr-2" />
+                    Watchlist
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate('/kyc')}>
+                    <Shield className="w-4 h-4 mr-2" />
+                    KYC Verification
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate('/dashboard/settings')}>
+                    <Settings className="w-4 h-4 mr-2" />
+                    Settings
                   </DropdownMenuItem>
                   {user?.role === 'admin' && (
                     <>
