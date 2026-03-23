@@ -89,6 +89,8 @@ const App = () => (
               <Route path="listings" element={<AllListings />} />
               <Route path="users" element={<Users />} />
               <Route path="review/:id" element={<ReviewListing />} />
+              <Route path="kyc" element={<KYCReviews />} />
+              <Route path="analytics" element={<AdminAnalytics />} />
             </Route>
             
             <Route path="*" element={<NotFound />} />
