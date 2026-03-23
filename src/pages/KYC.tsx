@@ -204,7 +204,7 @@ const KYC = () => {
                 {[
                   'National Identification Number (NIN)',
                   'Bank Verification Number (BVN)',
-                  'Valid government-issued ID (Driver's License, Passport, or Voter's Card)',
+                  "Valid government-issued ID (Driver's License, Passport, or Voter's Card)",
                   'A clear selfie photo',
                   'Proof of Nigerian address',
                 ].map((item, i) => (
