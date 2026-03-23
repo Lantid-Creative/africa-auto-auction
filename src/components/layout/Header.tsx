@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/hooks/useAuth';
 import { useLanguage } from '@/hooks/useLanguage';
 import { localeNames, type LocaleCode } from '@/locales';
@@ -23,6 +24,10 @@ import {
   ChevronDown,
   Search,
   Globe,
+  Shield,
+  Bell,
+  Heart,
+  Settings,
 } from 'lucide-react';
 
 const Header = () => {
