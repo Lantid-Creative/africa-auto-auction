@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link, useNavigate, Outlet, useLocation } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
@@ -8,12 +7,13 @@ import {
   LayoutDashboard, 
   Car, 
   Users, 
-  Settings,
   CheckCircle2,
-  XCircle,
   Clock,
-  Eye,
-  ChevronRight
+  Shield,
+  BarChart3,
+  TrendingUp,
+  DollarSign,
+  Gavel,
 } from 'lucide-react';
 
 const mockPendingListings = [
