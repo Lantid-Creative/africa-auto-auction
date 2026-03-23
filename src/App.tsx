@@ -26,6 +26,7 @@ import Pricing from "./pages/Pricing";
 import SuccessStories from "./pages/SuccessStories";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
+import KYC from "./pages/KYC";
 import Dashboard from "./pages/Dashboard";
 import MyListings from "./pages/dashboard/MyListings";
 import MyBids from "./pages/dashboard/MyBids";
@@ -36,6 +37,8 @@ import PendingReviews from "./pages/admin/PendingReviews";
 import AllListings from "./pages/admin/AllListings";
 import Users from "./pages/admin/Users";
 import ReviewListing from "./pages/admin/ReviewListing";
+import KYCReviews from "./pages/admin/KYCReviews";
+import AdminAnalytics from "./pages/admin/Analytics";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
