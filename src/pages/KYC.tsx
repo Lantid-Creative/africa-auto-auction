@@ -118,7 +118,7 @@ const KYC = () => {
     try {
       await new Promise(r => setTimeout(r, 2000));
       setStep('submitted');
-      toast.success('KYC submitted successfully! We'll verify within 24 hours.');
+      toast.success("KYC submitted successfully! We'll verify within 24 hours.");
     } catch {
       toast.error('Submission failed. Please try again.');
     } finally {
